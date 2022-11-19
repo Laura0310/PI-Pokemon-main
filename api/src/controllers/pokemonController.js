@@ -61,7 +61,7 @@ const getPokemonsId = async (req, res) => {
 
         res.status(200).send(detail)
     } catch (error) {
-        res.status(404).send("No hay ni monda")
+        res.status(404).send("No existe pokemon")
     }
 }
 
