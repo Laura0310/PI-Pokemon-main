@@ -7,10 +7,7 @@ const getPokemons = async (req, res) => {  // async para especificar que es una 
     // try { // try catch para responder errores , cada que haga try catch, poner todo dentro de try
     const { name, orderBy, order, source } = req.query
 
-    if (name) {
-        let result = await findName(name)
-        return res.send(result)
-    }
+
     let response = await axios.get("https://pokeapi.co/api/v2/pokemon") // await espera que se resuelva la prmesa para poder segu9ir , response tiene toda la informacion del rwquest que se hizo
     let arrayPokemons = [];
 
@@ -40,8 +37,10 @@ const getPokemons = async (req, res) => {  // async para especificar que es una 
     });
     // al ser tantas promesas debo trabajar con promise All para que se resuelvan  todas
     arrayPokemons = await Promise.all(arrayPokemons)
+    if (name) { arrayPokemons = await findName(name)}
     arrayPokemons = sortPokemons(arrayPokemons, orderBy, order)
     arrayPokemons = filterBySource(arrayPokemons, source)
+
 
     res.status(200).send(arrayPokemons)
 }
@@ -102,6 +101,7 @@ const getPokemonsType = async (req, res) => {
         const allTypes = await Type.findAll() // aqui estoy usando el findAll para traer todos los tipos de pokemonos de mi bd, siempre poner await pq es asincrona 
 
         res.status(200).send(allTypes)
+        console.log(req.body)
     } catch (error) {
         console.log(error)
         res.status(500).send("algo salió mal")

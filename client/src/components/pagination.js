@@ -16,17 +16,17 @@
 // }
 
 
-return (
-<div>
-<button>Anterior</button>
-<button>Siguiente</button>
+// return (
+// <div>
+// <button onClick>Anterior</button>
+// <button onClick>Siguiente</button>
 
 
 
-</div>
+// </div>
 
 
 
 
 
-)
+// )

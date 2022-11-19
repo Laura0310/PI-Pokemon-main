@@ -12,3 +12,16 @@ module.exports = (sequelize) => {
         },
     });
 };
+
+
+// router.get('/types', async (req, res) => {
+//     const typesApi = await axios.get("https://pokeapi.co/api/v2/type");
+//     const types = typesApi.data.results;
+//     types.forEach(el => {
+//         Type.findOrCreate({
+//             where: { name: el.name }
+//         })
+//     })
+//     const allTypes = await Type.findAll();
+//     return res.send(allTypes);
+// });

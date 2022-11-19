@@ -13,7 +13,7 @@ const CreatePokemons = () => {
     const [create, setCreate] = useState({ // creando un estado con unos valores iniciales en 0 y vacio
         name: "",
         hp: 0,
-        type: "",
+        type: [],
         attack: 0,
         defense: 0,
         speed: 0,
@@ -33,17 +33,16 @@ const CreatePokemons = () => {
         })
     }
 
-    const challenge = (event) => {  // funcion encargada de actualizar los values en el estado
+    const updateTypes = (event) => {  // funcion encargada de actualizar los values en el estado
         setCreate({ // esto actualiza mi estado
             ...create, // aqui hago una copia del contenido del estado
-            type: event.target.value // actualizo este campo en especifico
+            type:[...create.type,event.target.value] // actualizo este campo en especifico
         })
     }
 
-
-
     const submitCreate = (event) => {
         event.preventDefault(); // esto para que cuando le de submit no se me borre
+        console.log(create)
         dispatch(actions.createPokemons(create))
 
     }
@@ -57,6 +56,7 @@ const CreatePokemons = () => {
 
     return (
         <div>
+            <h1><p align="center">CREATE POKEMÓN</p></h1>
             <form onSubmit={submitCreate}>
                 <label htmlFor="name">Name: </label>
                 <input type='text' name='name' value={create.name} onChange={update}></input>
@@ -78,15 +78,16 @@ const CreatePokemons = () => {
 
                 <label htmlFor="height">Height: </label>
                 <input type='number' name='height' value={create.height} onChange={update}></input>
-
-                <select name="types[]" id="sl" multiple onChange={challenge}>
-                    <option>Choose a type</option>
+                <label for="sl">Choose a type</label>
+                <select name="types[]" id="sl" onChange={updateTypes}>
+                    <option></option>
                     {type.map(i => (
                         <option value={i.id}>{i.name} </option>
                     ))}
 
                 </select>
 
+              
                 <button type="submit">Create Pokemon</button>
 
             </form>
