@@ -2,6 +2,7 @@
 // aqui voy a poner funciones o x cosas que se repitan y poder llamarlas mas corto en el codigo, es decir reutilizar
 const { Pokemon, Type } = require("../db");
 const axios = require("axios");
+const e = require("express");
 
 const pokemonDetail = (response) => { // esto me saca información y me crea un objeto de mi pokemon
     let arrayTypes = []
@@ -77,9 +78,24 @@ const filterBySource = (arrayPokemons, source) => { // este para filtrar si es u
 }
 
 
+
+const filterType = (arrayPokemons, type) => {
+    return arrayPokemons.filter(e => e.type.includes(type))
+}
+
+const pagination = (arrayPokemons, page) => {
+    let perPage = 12;
+    let pg = page || 1
+    let offset = perPage * (pg - 1) // desde donde comenzamos
+    let end = perPage * pg // hasta donde vamos, terminamos
+    return arrayPokemons.slice(offset, end)
+}
+
 module.exports = {
     pokemonDetail,
     findName,
     sortPokemons,
-    filterBySource
+    filterBySource,
+    filterType,
+    pagination
 }

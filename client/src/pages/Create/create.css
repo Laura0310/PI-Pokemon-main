@@ -1,4 +1,13 @@
+.formulario{
+    background-color: black;
+    color:white
+}
+
+.formulario h1{
+    color : white;
+}
+
 .b1{
     background:transparent;
-    color:red
+    color:white
 }

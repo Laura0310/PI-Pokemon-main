@@ -7,9 +7,10 @@ import { pokemonsId } from "../../redux/actions"
 function Details(props) {
     const id = props.match.params.id
     const dispatch = useDispatch(); //estoy guardando en la variable dispatch la funcion de UseDispacth para poder usarla, esto siempre que mi componente necesite ejecutar de las acciones, con esto se ejecuta la accion que va actualizar el estado, que queda en store
+   
     useEffect(() => { //para ejecutar algo apenas se inicie(montar)/actualice el componente
         dispatch(pokemonsId(id)) // esto me va a ejcutar la accion, va ahcer la peticion al back
-    }, [dispatch])
+    }, [dispatch, id])
 
     let pokemonDetail = useSelector(store => store.pokemonsId) // PARA ACCEDER AL ESTADO, PARA TRAER LA INFO A MI COMPONENTE
 
@@ -23,7 +24,7 @@ function Details(props) {
             <h3>{pokemonDetail.speed}</h3>
             <h3>{pokemonDetail.weight}</h3>
             <h3>{pokemonDetail.height}</h3>
-            <img src = {pokemonDetail.img}/>
+            <img src = {pokemonDetail.img} alt ="detail"/>
         </div>
     )
 }

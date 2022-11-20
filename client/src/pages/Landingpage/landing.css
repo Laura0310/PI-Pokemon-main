@@ -1,20 +1,23 @@
 .landing {
-    background-color: red;
-    align-items: center;
+  background-color: red;
+  align-items: center;
 }
 
 
-.fcc-btn {
-   
-    border-radius: 5px;
-    margin: 0 auto;
-    background-color: #000000;
-    color: white;
-    padding: 35px 45px;
-    text-decoration: none;
+.btn {
+  width: 300px; 
+  transform: translateX(-1%);
+  border-radius: 5px;
+  margin: 0 auto;
+  background-color: #000000;
+  color: white;
+  padding: 15px 25px;
+  text-decoration: none;
 
-  }
+}
 
-  .a{
-    justify-content: center;
-  }
+
+
+
+
+

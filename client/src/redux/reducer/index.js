@@ -4,7 +4,7 @@ import { GET_POKEMONS, GET_POKEMONS_ID, GET_POKEMONS_TYPES, POST_POKEMONS } from
 
 
 const initialState = {// estado global que voy a poder acceder desde cualquier parte de mi app
-    pokemons: [],
+    pokemons: {},
     pokemonsId: {},
     pokemonsTypes: [],
     createdPokemon: {}
@@ -14,7 +14,7 @@ const initialState = {// estado global que voy a poder acceder desde cualquier p
 const rootReducer = (state = initialState, action) => { // se encarga de modificar nuestro estado
     switch (action.type) {
         // Acá va tu código:
-        case GET_POKEMONS:
+        case GET_POKEMONS: // esto me lo da las actions para llenar mi store
             return {
                 ...state,
                 pokemons: action.payload // es la info que traje del backend

@@ -1,18 +1,29 @@
 const axios = require("axios");
 const { Pokemon, Type } = require("../db");
-const { pokemonDetail, findName, sortPokemons, filterBySource } = require("../helpers/PokemonHelper");
+const { pokemonDetail, findName, sortPokemons, filterBySource, filterType, pagination } = require("../helpers/PokemonHelper");
 // aqui vamos a crear los controladores, las funciones que van a funcionar en nuentras Turutas
 
 const getPokemons = async (req, res) => {  // async para especificar que es una funcion asincrona y usar el await
     // try { // try catch para responder errores , cada que haga try catch, poner todo dentro de try
-    const { name, orderBy, order, source } = req.query
+    const { name, orderBy, order, source, type, page } = req.query
 
 
-    let response = await axios.get("https://pokeapi.co/api/v2/pokemon") // await espera que se resuelva la prmesa para poder segu9ir , response tiene toda la informacion del rwquest que se hizo
+    let response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=40") // await espera que se resuelva la prmesa para poder segu9ir , response tiene toda la informacion del rwquest que se hizo
     let arrayPokemons = [];
 
-    const allPokemonsDb = await Pokemon.findAll({ include: Type })
-    arrayPokemons = [...allPokemonsDb]
+    let allPokemonsDb = await Pokemon.findAll({ include: Type })
+    const newPokemonsDb = allPokemonsDb.map(e => {
+        return (
+            {
+                id: e.id,
+                name: e.name,
+                img: "https://www.esimagenes.com/pimagen/esfera-de-pokemon-png.png",
+                type: e.types.map(i => i.name),
+                attack: e.attack
+            }
+        )
+    })
+    arrayPokemons = [...newPokemonsDb]
 
     const getPokemonDetails = (url) => { // una funcion que recibe una url,hace una peticion a la url,construye un objeto,y lo rellena con la info de la request
         return axios.get(url) // este return para que funcione el return de abajo 
@@ -26,7 +37,7 @@ const getPokemons = async (req, res) => {  // async para especificar que es una 
                     name: response.data.name,
                     img: response.data.sprites.front_default,
                     type: arrayTypes,
-                    attack: response.data.stats[1].base_stat
+                    attack: response.data.stats[1].base_stat // se puso esto para ordenar por ataque
                 }
                 return objectPokemons
             })
@@ -37,12 +48,16 @@ const getPokemons = async (req, res) => {  // async para especificar que es una 
     });
     // al ser tantas promesas debo trabajar con promise All para que se resuelvan  todas
     arrayPokemons = await Promise.all(arrayPokemons)
-    if (name) { arrayPokemons = await findName(name)}
-    arrayPokemons = sortPokemons(arrayPokemons, orderBy, order)
-    arrayPokemons = filterBySource(arrayPokemons, source)
+    if (name) { arrayPokemons = await findName(name) }
+    if (order && orderBy) arrayPokemons = sortPokemons(arrayPokemons, orderBy, order)
+    if (source) arrayPokemons = filterBySource(arrayPokemons, source)
+    if (type) arrayPokemons = filterType(arrayPokemons, type)
 
+    // aqui estoy haciendo el paginado
+    let totalPages = Math.ceil(arrayPokemons.length / 12)
+    arrayPokemons = pagination(arrayPokemons, page)
 
-    res.status(200).send(arrayPokemons)
+    res.status(200).send({ totalPages, data: arrayPokemons })
 }
 
 
