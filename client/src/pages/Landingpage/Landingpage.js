@@ -1,20 +1,19 @@
-import { Link } from "react-router-dom";
 import React from "react";
+import "./landing.css";
 
-const Landingpage = () =>{
+
+const Landingpage = () => {
 
 
-    const handleRedirect = (event) => {
-
-    }
+   
 
     return (
-        <div>
+        <div className ="landing">
             <h1><p align="center">HOLA</p></h1>
-            <button onClick = "location.href=http://localhost:3000/home"> Home </button>
-    
-    
-    
+            <a target="_blank" className="fcc-btn" href="http://localhost:3000/home">HOME</a>
+           
+
+
         </div>
     )
 

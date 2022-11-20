@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../redux/actions";
 import { useState, useEffect } from "react";
+import "./create.css";
 
 
 
@@ -58,7 +59,7 @@ const CreatePokemons = () => {
         <div>
             <h1><p align="center">CREATE POKEMÓN</p></h1>
             <form onSubmit={submitCreate}>
-                <label htmlFor="name">Name: </label>
+                <label className ="b1" htmlFor="name">Name: </label>
                 <input type='text' name='name' value={create.name} onChange={update}></input>
 
                 <label htmlFor="hp">Hp: </label>

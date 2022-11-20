@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"; // se importa pq es el q
 import { Link } from 'react-router-dom';
 import { allPokemons } from '../../redux/actions';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
-import "./Home.css";
+import "./home.css";
 
 function Home() {
 
@@ -43,7 +43,7 @@ function Home() {
 
     // aqui debe ir paginado y filtros y la lista de todos
     return (
-        <div>
+        <div className = "home"> 
             <select name="source" id="sr" onChange={handleFilters}>
                 <option>Elige el filtro</option>
                 <option value="db">Date base</option>
@@ -57,7 +57,7 @@ function Home() {
                 <option value="name_asc">Name asc</option>
 
             </select>
-            <label htmlFor="name">Name: </label>
+            <label htmlFor="name">Buscar por nombre: </label>
             <input type='string' name='name' onKeyDown={(e) => e.key === "Enter" && handleFilters(e)}></input>
             <div>
                 <h1><p align="center">POKEMONES</p></h1>
@@ -78,4 +78,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Home;
