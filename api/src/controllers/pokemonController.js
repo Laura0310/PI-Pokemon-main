@@ -60,7 +60,6 @@ const getPokemons = async (req, res) => {  // async para especificar que es una 
     res.status(200).send({ totalPages, data: arrayPokemons })
 }
 
-
 const getPokemonsId = async (req, res) => {
     try {
         const { id } = req.params
@@ -79,7 +78,6 @@ const getPokemonsId = async (req, res) => {
     }
 }
 
-
 const postPokemons = async (req, res) => {
     try {
         const { name, hp, attack, defense, speed, height, weight, type } = req.body
@@ -95,13 +93,13 @@ const postPokemons = async (req, res) => {
         }
         const createPokemon = await Pokemon.create(detailPokemon)
         await createPokemon.addType(type)
-        res.status(200).send("Pokemón creado exitosamente")
+        res.status(200).send({ message: "Pokemón creado exitosamente" })
     } catch (error) {
         console.log(error)
         res.status(500).send({ message: "algo salió mal" })
-
     }
 }
+
 const getPokemonsType = async (req, res) => {
     try {
         let response = await axios.get("https://pokeapi.co/api/v2/type")
@@ -116,19 +114,11 @@ const getPokemonsType = async (req, res) => {
         const allTypes = await Type.findAll() // aqui estoy usando el findAll para traer todos los tipos de pokemonos de mi bd, siempre poner await pq es asincrona 
 
         res.status(200).send(allTypes)
-        console.log(req.body)
     } catch (error) {
         console.log(error)
         res.status(500).send("algo salió mal")
-
     }
 }
-
-
-
-
-
-
 
 module.exports = {
     getPokemons,

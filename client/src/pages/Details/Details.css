@@ -1,0 +1,49 @@
+.all-details-container {
+    display: flex;
+    justify-content: center;
+    background-image: url("https://i.pinimg.com/736x/31/52/b1/3152b151b84a7016d0d150b5780944eb.jpg");
+    /* background-image: url("https://st2.depositphotos.com/3213441/12022/v/600/depositphotos_120226584-stock-illustration-pokemon-go-pokeball-seamless-texture.jpg"); */
+    width: 650px;
+    color: white;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 10px 15px 10px#101010;
+    font-size: 20px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.contain-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    background-color: #d9e9f7;
+    border-radius: 10px;
+    color: black;
+}
+
+.contain-details>div {
+    display: flex;
+    gap: 54px;
+}
+
+.img-each-pk {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.img-each-pk img {
+    width: 250px;
+    object-fit: contain;
+}
+
+.types {
+    display: flex;
+    gap: 44px;
+    flex-wrap: wrap;
+    justify-content: center;
+}

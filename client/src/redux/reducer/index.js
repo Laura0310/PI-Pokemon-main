@@ -1,5 +1,5 @@
 // debo importar las actions aqui
-import { GET_POKEMONS, GET_POKEMONS_ID, GET_POKEMONS_TYPES, POST_POKEMONS } from "../actions";
+import { GET_POKEMONS, GET_POKEMONS_ID, GET_POKEMONS_TYPES, POST_POKEMONS, LOADING } from "../actions";
 // aaqui modifico el estado segun la accion que quiera ( todos los pokemones, o por el nombre)
 
 
@@ -7,7 +7,8 @@ const initialState = {// estado global que voy a poder acceder desde cualquier p
     pokemons: {},
     pokemonsId: {},
     pokemonsTypes: [],
-    createdPokemon: {}
+    createdPokemon: {},
+    loading: false
 };
 
 
@@ -35,7 +36,11 @@ const rootReducer = (state = initialState, action) => { // se encarga de modific
                 // que iria aqui? que me devulve cuando creo un pokemon?
                 createdPokemon: action.payload
             }
-
+        case LOADING:
+            return {
+                ...state,
+                loading: action.payload
+            }
         default: return state
     }
 

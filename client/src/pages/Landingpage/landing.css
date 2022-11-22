@@ -1,23 +1,29 @@
 .landing {
-  background-color: red;
+  background-color: #d42626;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  height: calc(100vh - 44px);
 }
 
 
-.btn {
-  width: 300px; 
-  transform: translateX(-1%);
-  border-radius: 5px;
-  margin: 0 auto;
-  background-color: #000000;
+.welcome {
+  font-size: 50px;
+  flex-direction: column;
+  align-items: center;
   color: white;
-  padding: 15px 25px;
-  text-decoration: none;
+  padding: 0px 50px 50px;
+  padding-left: 100px;
+  text-shadow: 1px 0px 0px black,
+    1px 1px 0px black,
+    1px 0px 0px black,
+    1px -1px 0px black;
 
 }
 
-
-
-
-
-
+.pokemones {
+  width: 30%;
+  margin: auto;
+  margin-top: 33px;
+}

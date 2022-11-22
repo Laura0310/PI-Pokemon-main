@@ -1,0 +1,12 @@
+.nav-bar{
+    display: flex;
+    justify-content: center;
+    grid-gap: 20px;
+    gap: 20px;
+    background-color: white;
+    height: 44px;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: black;
+}

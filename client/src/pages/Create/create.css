@@ -1,13 +1,77 @@
-.formulario{
+.formulario {
+    background: transparent;
+    color: white;
+    display: flex;
+    justify-content: center;
+
+}
+
+.entries-create {
+    display: flex;
+    justify-content: center;
+
+}
+
+
+
+.formulario h1 {
+    color: white;
+}
+
+.b1 {
+    background: transparent;
+    color: white
+}
+
+.logo-pokemon {
+    width: 40%;
+    display: flex;
+    padding-right: 50px;
+    margin: auto
+}
+
+.create-button {
+    cursor: pointer;
+    background: white;
+    height: 34px;
+    width: 250px;
+    font-size: 0.8em;
+    padding-right: 1.26em;
+    padding-left: 1em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: black;
+    padding-left: 10px;
+}
+
+.entries-create {
     background-color: black;
-    color:white
+    width: 750px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 82px;
+    border-radius: 10px;
+    padding: 59px;
+    gap: 20px;
 }
 
-.formulario h1{
-    color : white;
+
+.namehp {
+    display: flex;
+    gap: 40px;
 }
 
-.b1{
-    background:transparent;
-    color:white
+
+.create-input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.choosetypes {
+    background-color: white;
+    color: black;
+    height: 23px;
 }

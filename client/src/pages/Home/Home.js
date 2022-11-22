@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"; // se importa pq es el que me va a permitir llamar las acciones, quienes son las qe modifican el estado
-import { Link } from 'react-router-dom';
 import { allPokemons, pokemonsTypes } from '../../redux/actions';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import "./home.css";
@@ -27,6 +26,9 @@ function Home() {
 
     let pokemons = useSelector(store => store.pokemons) // el useSelector me sirve para especificar lo que estoy pidiendo, y este me permite traeme de la store la info a mi componente , esto funciona solo con el estado GLOBALL
     let types = useSelector(store => store.pokemonsTypes)
+    let loading = useSelector(store => store.loading)
+
+
 
     const handleFilters = (event) => {// funcion que se asume maneja el evento de algun input
         const property = event.target.name
@@ -57,48 +59,62 @@ function Home() {
     // aqui debe ir paginado y filtros y la lista de todos
     return (
         <div className="home">
-            <select name="source" id="sr" onChange={handleFilters}>
-                <option>Elige el filtro</option>
-                <option value="db">Date base</option>
-                <option value="api">Api</option>
-            </select>
-            <select name="sort" onChange={handleSorting}>
-                <option>Ordenar por</option>
-                <option value="attack_desc">Attack desc</option>
-                <option value="attack_asc">Attack asc</option>
-                <option value="name_desc">Name desc</option>
-                <option value="name_asc">Name asc</option>
-            </select>
-            <select name="type" onChange={handleFilters}>
-                <option>Elige el tipo</option>
-                {types.map(e => <option value={e.name}>{e.name}</option>)}
-            </select>
+            <div className='filters-contain'>
+                <select name="source" id="sr" onChange={handleFilters}>
+                    <option>Choose a filter</option>
+                    <option value="db">Date base</option>
+                    <option value="api">Api</option>
+                </select>
+                <select name="sort" onChange={handleSorting}>
+                    <option>Sort by</option>
+                    <option value="attack_desc">Attack desc</option>
+                    <option value="attack_asc">Attack asc</option>
+                    <option value="name_desc">Name desc</option>
+                    <option value="name_asc">Name asc</option>
+                </select>
+                <select name="type" onChange={handleFilters}>
+                    <option>Choose a type</option>
+                    {types.map(e => <option value={e.name}>{e.name}</option>)}
+                </select>
 
-            <label htmlFor="name">Buscar por nombre: </label>
-            <input type='string' name='name' onKeyDown={(e) => e.key === "Enter" && handleFilters(e)}></input>
+                <input type='string' placeholder='Search for name ' name='name' onKeyDown={(e) => e.key === "Enter" && handleFilters(e)}></input>
+                <button className='click-button' onClick={() => setFilters(initialState)}><img src="/cleaning.png" alt="clean" /> </button>
+            </div>
 
-            <button onClick={() => setFilters(initialState)}>Limpiar filtros</button>
-            <Link to="/create">Crea tu pokemon</Link>
-            <div>
-                <h1><p align="center">POKEMONES</p></h1>
-                {pokemons.data?.map(i =>
-                    <PokemonCard
-                        key={i.id}
-                        id={i.id}
-                        name={i.name}
-                        type={i.type}
-                        img={i.img}
-                    />
-                )
-                }
-            </div>
-            <div>
-                {
-                    Array(pokemons.totalPages).fill().map((e, i) => (
-                        <button onClick={() => handlePage(i + 1)}>{i + 1}</button>
-                    ))
-                }
-            </div>
+
+            <img className='logo-pokemon' src="/logo.png" alt="logo" />
+            {
+                // pokemons?.data.length === 0 ? window.alert("pokemon not found") :
+                loading ?
+                    <div>
+                        <div class="loadingio-spinner-rolling-hciydlsv51p"><div class="ldio-os8kw4pbboh">
+                            <div></div>
+                        </div></div>
+                    </div>
+                    :
+                    <div>
+                        {pokemons.data?.length == 0 && <div>Pokemons not found</div>}
+                        <div className='card-contain'>
+                            {pokemons.data?.map(i =>
+                                <PokemonCard
+                                    key={i.id}
+                                    id={i.id}
+                                    name={i.name}
+                                    type={i.type}
+                                    img={i.img}
+                                />
+                            )
+                            }
+                        </div>
+                        <div>
+                            {
+                                Array(pokemons.totalPages).fill().map((e, i) => (
+                                    <button onClick={() => handlePage(i + 1)}>{i + 1}</button>
+                                ))
+                            }
+                        </div>
+                    </div>
+            }
         </div>
 
     )

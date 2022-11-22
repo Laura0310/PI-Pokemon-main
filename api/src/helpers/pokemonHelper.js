@@ -39,11 +39,20 @@ const pokemonDetail = (response) => { // esto me saca información y me crea un 
     return detail
 }
 
-
 const findName = async (name) => { // este encuentra un pokemon que coincida el nombre en la apiexterna y en mi bd y si no, me devuelva el error correspondiente
     try {
         let namePokemon = await Pokemon.findOne({ where: { name: name }, include: { model: Type } })
-        if (namePokemon) return [namePokemon]
+        if (namePokemon) {
+            return (
+                [{
+                    id: namePokemon.id,
+                    name: namePokemon.name,
+                    img: "https://www.esimagenes.com/pimagen/esfera-de-pokemon-png.png",
+                    type: namePokemon.types.map(i => i.name),
+                    attack: namePokemon.attack
+                }]
+            )
+        }
 
         let response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`) // response.data // aqui estoy dentro de la info
         let detail = pokemonDetail(response)
@@ -76,8 +85,6 @@ const filterBySource = (arrayPokemons, source) => { // este para filtrar si es u
     }
     return arrayPokemons
 }
-
-
 
 const filterType = (arrayPokemons, type) => {
     return arrayPokemons.filter(e => e.type.includes(type))
