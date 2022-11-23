@@ -74,6 +74,31 @@ select {
     border-radius: 5px;
     padding-left: 10px;
 }
+.paginado{
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px 30px;
+    gap: 20px;
+}
+
+.paginado button{
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+    font-size: medium;
+    border: 1px solid;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* //loading */

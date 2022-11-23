@@ -12,7 +12,7 @@ const pokemonDetail = (response) => { // esto me saca información y me crea un 
 
     let detail = {
         name: response.data.name,
-        img: response.data.sprites.front_default,
+        img: response.data.sprites.other.dream_world.front_default,
         type: arrayTypes,
         id: response.data.id,
         hp: null,

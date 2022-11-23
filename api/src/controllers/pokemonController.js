@@ -35,7 +35,7 @@ const getPokemons = async (req, res) => {  // async para especificar que es una 
                 let objectPokemons = {
                     id: response.data.id,
                     name: response.data.name,
-                    img: response.data.sprites.front_default,
+                    img: response.data.sprites.other.dream_world.front_default,
                     type: arrayTypes,
                     attack: response.data.stats[1].base_stat // se puso esto para ordenar por ataque
                 }

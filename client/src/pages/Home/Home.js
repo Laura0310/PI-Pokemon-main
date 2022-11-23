@@ -106,7 +106,7 @@ function Home() {
                             )
                             }
                         </div>
-                        <div>
+                        <div className='paginado'>
                             {
                                 Array(pokemons.totalPages).fill().map((e, i) => (
                                     <button onClick={() => handlePage(i + 1)}>{i + 1}</button>

@@ -34,8 +34,8 @@
     cursor: pointer;
     background: white;
     height: 34px;
-    width: 250px;
-    font-size: 0.8em;
+    width: 150px;
+    font-size: 16px;
     padding-right: 1.26em;
     padding-left: 1em;
     border-radius: 5px;
@@ -43,6 +43,7 @@
     outline: none;
     color: black;
     padding-left: 10px;
+    font-weight: bold;
 }
 
 .entries-create {

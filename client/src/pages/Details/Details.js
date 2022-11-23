@@ -31,7 +31,8 @@ function Details(props) {
                     <h3>Speed: {pokemonDetail.speed}</h3>
                     <h3>Weigth: {pokemonDetail.weight}</h3>
                 </div>
-                <h3 className='types'>Type: {pokemonDetail.type}</h3>
+                <h3 className='types'>Type: {
+                    pokemonDetail.type?.map(e=>(<div>{e}</div>))}</h3>
             </div>
             <div className='img-each-pk'> <img src={pokemonDetail.img} alt="detail" />
             </div>
