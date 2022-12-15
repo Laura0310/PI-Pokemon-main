@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { Pokemon, Type } = require("../db");
-const { pokemonDetail, findName, sortPokemons, filterBySource, filterType, pagination } = require("../helpers/PokemonHelper");
+const { pokemonDetail, findName, sortPokemons, filterBySource, filterType, pagination } = require("../helpers/pokemonHelper");
 // aqui vamos a crear los controladores, las funciones que van a funcionar en nuentras Turutas
 
 const getPokemons = async (req, res) => {  // async para especificar que es una funcion asincrona y usar el await
