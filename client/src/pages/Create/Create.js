@@ -42,7 +42,7 @@ const CreatePokemons = () => {
     }
 
     const updateTypes = (event) => {  // funcion encargada de actualizar los values en el estado
-        if(create.type.length == 2) return window.alert("can not choose more types")
+        if(create.type.length === 2) return window.alert("can not choose more types")
         setCreate({ // esto actualiza mi estado
             ...create, // aqui hago una copia del contenido del estado
             type: [...create.type, event.target.value] // actualizo este campo en especifico

@@ -93,7 +93,7 @@ function Home() {
                     </div>
                     :
                     <div>
-                        {pokemons.data?.length == 0 && <div>Pokemons not found</div>}
+                        {pokemons.data?.length === 0 && <div>Pokemons not found</div>}
                         <div className='card-contain'>
                             {pokemons.data?.map(i =>
                                 <PokemonCard

@@ -47,6 +47,7 @@ const getPokemons = async (req, res) => {  // async para especificar que es una 
         arrayPokemons.push(pokemon)
     });
     // al ser tantas promesas debo trabajar con promise All para que se resuelvan  todas
+    // estos son los filtros
     arrayPokemons = await Promise.all(arrayPokemons)
     if (name) { arrayPokemons = await findName(name) }
     if (order && orderBy) arrayPokemons = sortPokemons(arrayPokemons, orderBy, order)

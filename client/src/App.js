@@ -5,6 +5,8 @@ import Details from './pages/Details/Details';
 import Create from "./pages/Create/Create";
 import Landingpage from './pages/Landingpage/Landingpage';
 import NavBar from './components/NavBar/NavBar';
+// import axios from "axios";
+// axios.defaults.baseURL= "http://localhost:3001" // otra forma de ahorrarse espacio en las actions 
 // archivo que se encarga de usar todas las rutas, los states y renderizar las pages
 
 // deberi poner /types aqui??? como lo pongo?
