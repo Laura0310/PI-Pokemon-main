@@ -7,7 +7,6 @@
   height: calc(100vh - 44px);
 }
 
-
 .welcome {
   font-size: 50px;
   flex-direction: column;
