@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"; // se importa pq es el que me va a permitir llamar las acciones, quienes son las qe modifican el estado
 import { allPokemons, pokemonsTypes } from '../../redux/actions';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
-import "./home.css";
+import "/home.css";
 
 let initialState = {
     source: "",
